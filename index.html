@@ -1,156 +1,27 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>StrataVariance Labs (SVL)</title>
-  <meta name="description" content="StrataVariance Labs — research & engineering for reasoning QA. Introducing the Keel Framework: Reciprocal Validation Within Bounds." />
-  <meta name="theme-color" content="#0d1c2e" />
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="StrataVariance Labs (SVL)" />
-  <meta property="og:description" content="Introducing the Keel Framework: Reciprocal Validation Within Bounds." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='100%25' height='100%25' fill='%230d1c2e'/%3E%3Ctext x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif' font-size='72' fill='white'%3EStrataVariance Labs%3C/text%3E%3C/svg%3E" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Favicon (data URI so you only need this one file) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Cdefs%3E%3Cstyle%3E text{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-weight:700} %3C/style%3E%3C/defs%3E%3Crect rx='20' ry='20' width='96' height='96' fill='%230d1c2e'/%3E%3Ctext x='50' y='60' font-size='44' text-anchor='middle' fill='white'%3ESVL%3C/text%3E%3C/svg%3E" />
-
-  <style>
-    :root{
-      --svl-bg:#ffffff;
-      --svl-fg:#0d1c2e;        /* Keel navy */
-      --svl-fg-2:#223248;      /* muted */
-      --svl-accent:#d53c2c;    /* ruby dot */
-      --svl-maxw:960px;
-    }
-    @media (prefers-color-scheme: dark){
-      :root{ --svl-bg:#0b1220; --svl-fg:#e8eef7; --svl-fg-2:#b6c2d4; }
-    }
-    *{ box-sizing:border-box }
-    html,body{ height:100% }
-    body{
-      margin:0; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      color:var(--svl-fg); background:var(--svl-bg);
-    }
-    .wrap{ max-width:var(--svl-maxw); margin:0 auto; padding:24px; }
-    header{
-      display:flex; align-items:center; gap:14px; padding:18px 0 8px;
-    }
-    .logo{ display:inline-grid; place-items:center; width:40px; height:40px; border-radius:12px; background:var(--svl-fg); color:#fff; font-weight:800; letter-spacing:0.5px }
-    .brand{ font-weight:700; font-size:1.05rem; letter-spacing:0.25px }
-    nav{ margin-left:auto; display:flex; gap:16px; }
-    nav a{ color:var(--svl-fg); text-decoration:none; font-weight:600 }
-    nav a:focus, nav a:hover{ text-decoration:underline; text-underline-offset:2px }
-
-    .hero{ padding:64px 0 40px }
-    .tag{ display:inline-flex; align-items:center; gap:8px; color:var(--svl-fg-2); font-weight:600; letter-spacing:.25px }
-    .dot{ width:8px; height:8px; border-radius:50%; background:var(--svl-accent) }
-    h1{ margin:8px 0 10px; font-size:clamp(28px, 5vw, 44px); line-height:1.15 }
-    .sub{ max-width:48ch; color:var(--svl-fg-2); font-size:1.05rem }
-
-    .cta-row{ display:flex; flex-wrap:wrap; gap:12px; margin:28px 0 0 }
-    .btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; border:2px solid var(--svl-fg); color:var(--svl-fg); background:transparent; font-weight:700; text-decoration:none }
-    .btn.primary{ background:var(--svl-fg); color:#fff; border-color:var(--svl-fg) }
-    .btn:focus-visible{ outline:3px solid #8ab4ff; outline-offset:2px }
-
-    .grid{ display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); margin:56px 0 24px }
-    .card{ border:1px solid color-mix(in oklab, var(--svl-fg) 18%, transparent); border-radius:16px; padding:18px }
-    .card h3{ margin:4px 0 6px; font-size:1rem }
-    .card p{ margin:0; color:var(--svl-fg-2) }
-
-    footer{ border-top:1px solid color-mix(in oklab, var(--svl-fg) 18%, transparent); margin-top:56px; padding:18px 0; font-size:.95rem; color:var(--svl-fg-2) }
-    .foot-links{ display:flex; flex-wrap:wrap; gap:14px; margin:8px 0 0 }
-    .mono{ font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <div class="logo" aria-hidden="true">SVL</div>
-      <div class="brand" aria-label="StrataVariance Labs">StrataVariance Labs</div>
-      <nav>
-        <a href="#docs">Docs</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero" id="top">
-        <div class="tag"><span class="dot" aria-hidden="true"></span> Research & engineering for reasoning QA</div>
-        <h1>Introducing the <span class="mono">Keel</span> Framework</h1>
-        <p class="sub">Reciprocal validation within bounds for reasoning systems. A structured approach to detect, measure and document drift without in-line correction.</p>
-        <div class="cta-row">
-          <a class="btn primary" href="#whitepaper" id="link-whitepaper">Read the whitepaper</a>
-          <a class="btn" href="#kod" id="link-kod">Keel Open Definition (KOD)</a>
-          <a class="btn" href="#readme" id="link-readme">Repository README</a>
-        </div>
-      </section>
-
-      <section class="grid" id="docs">
-        <article class="card">
-          <h3>Why Keel</h3>
-          <p>Modern generative systems drift. Keel verifies reasoning symmetry and logs reciprocal deviations within declared tolerances.</p>
-        </article>
-        <article class="card">
-          <h3>What it is</h3>
-          <p>A framework, not a model: capture, reinstate and compare reasoning paths; quantify contextual drift; preserve auditability.</p>
-        </article>
-        <article class="card">
-          <h3>What it isn’t</h3>
-          <p>Keel does not correct outputs in-line or promise truth. It documents divergence so systems can remain accountable.</p>
-        </article>
-      </section>
-
-      <section id="about" class="grid">
-        <article class="card">
-          <h3>Accessibility & performance</h3>
-          <p>High-contrast palette, logical order, keyboard focus states, and a lightweight single-file build for fast loads.</p>
-        </article>
-        <article class="card">
-          <h3>Drop-in ready</h3>
-          <p>Replace the three links above with your live URLs. Add your Keel V2 emblem inline where you like.</p>
-        </article>
-        <article class="card">
-          <h3>Style continuity</h3>
-          <p>Uses Keel’s navy as the base tone and a restrained accent. No imagery required for v1.</p>
-        </article>
-      </section>
-
-      <section id="contact" class="card">
-        <h3>Contact</h3>
-        <p>Email: <a href="mailto:stratavariancelabs@gmail.com">stratavariancelabs@gmail.com</a></p>
-      </section>
-
-      <footer>
-        <div>© <span id="y"></span> StrataVariance Labs · The Keel Framework — Reciprocal validation within bounds</div>
-        <div class="foot-links">
-          <a href="#whitepaper" id="f-whitepaper">Whitepaper (PDF)</a>
-          <a href="#kod" id="f-kod">KOD v1.0</a>
-          <a href="#readme" id="f-readme">README</a>
-        </div>
-      </footer>
-    </main>
-  </div>
-
-  <script>
-    // Set year
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // QUICK LINK PATCH: replace these with your real URLs
-    const links = {
-      whitepaper: '#',   // e.g., '/docs/keel-whitepaper.pdf'
-      kod: '#',          // e.g., '/docs/keel-open-definition.html'
-      readme: '#',       // e.g., 'https://github.com/svl/keel#readme'
-    };
-    for (const k of Object.keys(links)){
-      const href = links[k];
-      const a1 = document.getElementById('link-'+k);
-      const a2 = document.getElementById('f-'+k);
-      if (a1) a1.href = href;
-      if (a2) a2.href = href;
-    }
-  </script>
-</body>
-</html>
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StrataVariance Labs — Keel Framework (v3.3)</title>
+<style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;line-height:1.5;margin:0;padding:2rem;color:#111}
+header,main{max-width:860px;margin:0 auto 2rem}code,pre{background:#f6f6f7;border-radius:8px;padding:.2rem .4rem}pre{padding:1rem;overflow:auto}
+a{color:#0a58ca;text-decoration:none}a:hover{text-decoration:underline}.muted{color:#666}</style>
+<header>
+  <h1>StrataVariance Labs (SVL)</h1>
+  <p><strong>Keel Framework — Reciprocal Validation Within Bounds</strong></p>
+  <p class="muted">A diagnostic layer for measuring reasoning drift in generative systems.</p>
+</header>
+<main>
+  <h2>What Keel does</h2>
+  <ul>
+    <li>Forward → Reciprocal → Alignment → <strong>RDL</strong> (Reciprocal Deviation Log)</li>
+    <li>Metrics: <strong>SIC</strong> (semantic overlap), <strong>Δ</strong> (drift), <strong>τ</strong> (order distance)</li>
+    <li><em>Diagnose, don’t decide</em>: no in-line correction</li>
+  </ul>
+  <h2>Whitepaper</h2>
+  <ul><li><a href="#">Keel Framework v3.3 (PDF)</a> · <a href="#">HTML</a></li></ul>
+  <h2>Open Definition (KOD-1.0)</h2>
+  <p>Use, adapt, and extend Keel with attribution. No warranty, no certification. <a href="#">Read KOD-1.0</a></p>
+  <h2>Quickstart</h2>
+  <pre><code>pip install keel-svl
+keel run prompt.txt --bounds 0.8 --out "runs/$(date -u +%FT%TZ)/rdl.json"</code></pre>
+  <p>Artifacts: <code>forward.txt</code>, <code>reciprocal.txt</code>, <code>align.json</code>, <code>rdl.json</code>, <code>telemetry.json</code>.</p>
+  <p class="muted">Contact: <a href="mailto:hello@svl.dev">hello@svl.dev</a></p>
+</main></html>
