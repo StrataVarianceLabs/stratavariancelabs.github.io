@@ -1,34 +1,179 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>StrataVariance Labs — Keel Framework (v3.3)</title>
-  <!-- svl icons & og -->
-  <link rel="icon" href="/assets/keel-32.v1.png" type="image/png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/keel-180.v1.png">
-  <meta property="og:image" content="https://stratavariancelabs.com/assets/og-image.v1.png">
-<style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;line-height:1.5;margin:0;padding:2rem;color:#111}
-header,main{max-width:860px;margin:0 auto 2rem}code,pre{background:#f6f6f7;border-radius:8px;padding:.2rem .4rem}pre{padding:1rem;overflow:auto}
-a{color:#0a58ca;text-decoration:none}a:hover{text-decoration:underline}.muted{color:#666}</style>
-<header>
-  <h1>StrataVariance Labs (SVL)</h1>
-  <p><strong>Keel Framework — Reciprocal Validation Within Bounds</strong></p>
-  <p class="muted">A diagnostic layer for measuring reasoning drift in generative systems.</p>
-</header>
-<main>
-  <h2>What Keel does</h2>
-  <ul>
-    <li>Forward → Reciprocal → Alignment → <strong>RDL</strong> (Reciprocal Deviation Log)</li>
-    <li>Metrics: <strong>SIC</strong> (semantic overlap), <strong>Δ</strong> (drift), <strong>τ</strong> (order distance)</li>
-    <li><em>Diagnose, don’t decide</em>: no in-line correction</li>
-  </ul>
-  <h2>Whitepaper</h2>
-  <ul><li><a href="#">Keel Framework v3.3 (PDF)</a> · <a href="#">HTML</a></li></ul>
-  <h2>Open Definition (KOD-1.0)</h2>
-  <p>Use, adapt, and extend Keel with attribution. No warranty, no certification. <a href="#">Read KOD-1.0</a></p>
-  <h2>Quickstart</h2>
-  <pre><code>pip install keel-svl
-keel run prompt.txt --bounds 0.8 --out "runs/$(date -u +%FT%TZ)/rdl.json"</code></pre>
-  <p>Artifacts: <code>forward.txt</code>, <code>reciprocal.txt</code>, <code>align.json</code>, <code>rdl.json</code>, <code>telemetry.json</code>.</p>
-  <p class="muted">Contact: <a href="mailto:hello@svl.dev">hello@svl.dev</a></p>
-</main></html>
-<- og-image.png ( 1200x630 social preview svl cache-bust Tue Oct 14 03:50:11 UTC 2025 -->
-<- og-image.png ( 1200x630 social preview svl cache-bust Tue Oct 14 03:52:21 UTC 2025 -->
-<- og-image.png ( 1200x630 social preview svl deploy nudge Tue Oct 14 03:57:56 UTC 2025 -->
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Keel v3.3 — StrataVariance Labs</title>
+  <meta name="description" content="Keel v3.3: Preflight → ICD-10 Golden → normalized gates. Ship with confidence." />
+  <meta property="og:title" content="Keel v3.3 — StrataVariance Labs" />
+  <meta property="og:description" content="Normalize, verify, ship. pass 0.92 • hal 0.06 • drift 1.2% • ICD-10 OK" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/favicon.ico" />
+  <!-- Inter font (free) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            brand: {
+              50:'#eef9ff',100:'#d9f1ff',200:'#b6e4ff',300:'#84d2ff',
+              400:'#49b9ff',500:'#1d9fff',600:'#0e86e6',700:'#0c6ab4',800:'#0e5791',900:'#0f486f'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>html{scroll-behavior:smooth}</style>
+</head>
+<body class="h-full bg-white text-slate-900 antialiased">
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2 font-semibold">
+        <span class="inline-block h-6 w-6 rounded-lg bg-brand-500"></span>
+        <span>StrataVariance Labs</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#how" class="hover:text-brand-700">How it works</a>
+        <a href="#results" class="hover:text-brand-700">Results</a>
+        <a href="#docs" class="hover:text-brand-700">Docs</a>
+        <a href="#contact" class="hover:text-brand-700">Contact</a>
+      </nav>
+      <button id="theme" class="rounded-xl border px-3 py-1.5 text-sm hover:bg-slate-50" aria-label="Toggle dark mode">☾</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-50 to-transparent pointer-events-none"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight">Keel v3.3 — normalize, verify, ship.</h1>
+        <p class="mt-4 text-lg text-slate-600">Preflight → ICD-10 Golden → normalized gates. Reporter ties to PR/Notion so Go-Day is calm.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="docs/keel_whitepaper_v3.3.pdf" class="inline-flex items-center justify-center rounded-xl bg-brand-600 px-5 py-3 text-white font-medium hover:bg-brand-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">Read whitepaper</a>
+          <a href="#contact" class="inline-flex items-center justify-center rounded-xl border border-slate-300 px-5 py-3 font-medium hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500">Contact us</a>
+        </div>
+        <!-- Credibility row -->
+        <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="rounded-xl border bg-white px-3 py-2 text-center"><span class="text-sm text-slate-500">pass</span><div class="font-semibold">0.92</div></div>
+          <div class="rounded-xl border bg-white px-3 py-2 text-center"><span class="text-sm text-slate-500">hal</span><div class="font-semibold">0.06</div></div>
+          <div class="rounded-xl border bg-white px-3 py-2 text-center"><span class="text-sm text-slate-500">drift</span><div class="font-semibold">1.2%</div></div>
+          <div class="rounded-xl border bg-white px-3 py-2 text-center"><span class="text-sm text-slate-500">ICD-10</span><div class="font-semibold">Golden OK</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid sm:grid-cols-3 gap-6">
+      <div class="rounded-2xl border p-6 bg-white shadow-sm">
+        <h3 class="font-semibold">Reporter harden</h3>
+        <p class="mt-2 text-sm text-slate-600">PR comment + Notion soft-post so every run stamps proof.</p>
+      </div>
+      <div class="rounded-2xl border p-6 bg-white shadow-sm">
+        <h3 class="font-semibold">Dev preflight</h3>
+        <p class="mt-2 text-sm text-slate-600">One command verifies env, tools, tokens, and GH auth.</p>
+      </div>
+      <div class="rounded-2xl border p-6 bg-white shadow-sm">
+        <h3 class="font-semibold">Golden + gates</h3>
+        <p class="mt-2 text-sm text-slate-600">ICD-10 golden check &amp; normalized gates for ship/no-ship.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+    <h2 class="text-2xl font-semibold">How it works</h2>
+    <ol class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <li class="rounded-2xl border p-6 bg-white">
+        <div class="text-sm text-slate-500">01</div>
+        <div class="mt-2 font-semibold">Preflight</div>
+        <p class="mt-2 text-sm text-slate-600">Sanity checks repo, tokens, GH, venv.</p>
+      </li>
+      <li class="rounded-2xl border p-6 bg-white">
+        <div class="text-sm text-slate-500">02</div>
+        <div class="mt-2 font-semibold">Normalize</div>
+        <p class="mt-2 text-sm text-slate-600">Derives hal/drift and asserts invariants.</p>
+      </li>
+      <li class="rounded-2xl border p-6 bg-white">
+        <div class="text-sm text-slate-500">03</div>
+        <div class="mt-2 font-semibold">Golden verify</div>
+        <p class="mt-2 text-sm text-slate-600">ICD-10 E11.9 • J06.9 • M54.5.</p>
+      </li>
+      <li class="rounded-2xl border p-6 bg-white">
+        <div class="text-sm text-slate-500">04</div>
+        <div class="mt-2 font-semibold">Gate + report</div>
+        <p class="mt-2 text-sm text-slate-600">Gates pass/hal/drift and posts artifacts.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- Results / screenshots placeholder -->
+  <section id="results" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+    <h2 class="text-2xl font-semibold">Results</h2>
+    <p class="mt-3 text-slate-600">v3.3 combos completed (1–5, 12…54321). Artifacts available in repo.</p>
+    <div class="mt-6 grid sm:grid-cols-2 gap-6">
+      <div class="aspect-video rounded-2xl border bg-slate-50 flex items-center justify-center text-slate-400">Add screenshot</div>
+      <div class="aspect-video rounded-2xl border bg-slate-50 flex items-center justify-center text-slate-400">Add chart</div>
+    </div>
+  </section>
+
+  <!-- Docs -->
+  <section id="docs" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+    <h2 class="text-2xl font-semibold">Docs</h2>
+    <div class="mt-6 grid sm:grid-cols-3 gap-6">
+      <a class="rounded-2xl border p-6 bg-white hover:shadow" href="docs/keel_whitepaper_v3.3.pdf">Whitepaper v3.3 (PDF)</a>
+      <a class="rounded-2xl border p-6 bg-white hover:shadow" href="KOD.html">KOD</a>
+      <a class="rounded-2xl border p-6 bg-white hover:shadow" href="README.html">README</a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
+    <div class="rounded-2xl border p-6 bg-white">
+      <h2 class="text-2xl font-semibold">Contact</h2>
+      <p class="mt-2 text-slate-600">Email us at
+        <a class="text-brand-700 hover:underline" href="mailto:stratavariancelabs@gmail.com">stratavariancelabs@gmail.com</a>
+      </p>
+      <!-- Optional honeypot form (no backend; start with mailto link above) -->
+      <!--
+      <form class="mt-6 max-w-md" action="https://formspree.io/f/YOUR_ID" method="POST" aria-live="polite">
+        <input type="email" name="email" required placeholder="you@company.com" class="w-full rounded-xl border px-3 py-2 mb-3" />
+        <textarea name="message" required placeholder="How can we help?" class="w-full rounded-xl border px-3 py-2 mb-3"></textarea>
+        <input type="text" name="_gotcha" class="hidden" aria-hidden="true" tabindex="-1">
+        <button class="rounded-xl bg-brand-600 text-white px-4 py-2 hover:bg-brand-700">Send</button>
+      </form>
+      -->
+    </div>
+  </section>
+
+  <footer class="border-t border-slate-200 py-10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-sm text-slate-500 flex flex-col sm:flex-row gap-2 sm:items-center justify-between">
+      <div>© <span id="y"></span> StrataVariance Labs</div>
+      <div class="flex gap-4">
+        <a href="https://github.com/REPO" class="hover:text-slate-700">GitHub</a>
+        <a href="docs/keel_whitepaper_v3.3.pdf" class="hover:text-slate-700">Whitepaper</a>
+        <a href="mailto:stratavariancelabs@gmail.com" class="hover:text-slate-700">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year + simple dark toggler
+    document.getElementById('y').textContent = new Date().getFullYear();
+    document.getElementById('theme').addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      document.body.classList.toggle('bg-slate-950');
+      document.body.classList.toggle('text-slate-100');
+    });
+  </script>
+</body>
+</html>
+
