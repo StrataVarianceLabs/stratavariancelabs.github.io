@@ -31,6 +31,11 @@
   <style>html{scroll-behavior:smooth}</style>
 </head>
 <body class="h-full bg-white text-slate-900 antialiased">
+  <nav id="SVL-TopNav" style="padding:12px 0; border-bottom:1px solid #e5e7eb; margin-bottom:16px; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;">
+    <a href="/" style="margin-right:16px; text-decoration:none;">Home</a>
+    <a href="/docs/WHITEPAPER.md" style="margin-right:16px; text-decoration:none;">Whitepaper</a>
+    <a href="/docs/Licensing.md" style="text-decoration:none;">Licensing</a>
+  </nav>
   <!-- Header -->
   <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -154,16 +159,6 @@
     </div>
   </section>
 
-  <footer class="border-t border-slate-200 py-10">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-sm text-slate-500 flex flex-col sm:flex-row gap-2 sm:items-center justify-between">
-      <div>© <span id="y"></span> StrataVariance Labs</div>
-      <div class="flex gap-4">
-        <a href="https://github.com/REPO" class="hover:text-slate-700">GitHub</a>
-        <a href="docs/keel_whitepaper_v3.3.pdf" class="hover:text-slate-700">Whitepaper</a>
-        <a href="mailto:stratavariancelabs@gmail.com" class="hover:text-slate-700">Email</a>
-      </div>
-    </div>
-  </footer>
 
   <script>
     // Year + simple dark toggler
@@ -174,19 +169,22 @@
       document.body.classList.toggle('text-slate-100');
     });
   </script>
+
+  <footer id="SVL-Footer" style="margin-top:48px; padding:16px 0; border-top:1px solid #e5e7eb; font-size:14px; color:#4b5563; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;">
+    <div>
+      © 2025 Kannan Rasiah trading as StrataVariance Labs — ABN 21 530 916 531 ·
+      <a href="mailto:hello@stratavariancelabs.com">hello@stratavariancelabs.com</a>
+    </div>
+    <div style="margin-top:6px;">
+      <a href="/docs/WHITEPAPER.md" style="margin-right:16px; text-decoration:none;">Whitepaper</a>
+      <a href="/docs/Licensing.md" style="margin-right:16px; text-decoration:none;">Licensing</a>
+      <a href="https://github.com/kannanrasiah-daemon/ripple-mark3/releases/tag/v3.3.2" style="text-decoration:none;">Keel v3.3.2 Release</a>
+    </div>
+  </footer>
+
 </body>
 </html>
 
 
 <!-- SVL footer start -->
-<footer style="margin-top:3rem;padding:1rem 0;border-top:1px solid #e5e7eb;font-size:0.9rem;">
-  <div style="max-width:960px;margin:0 auto;padding:0 1rem;display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;">
-    <div>© 2025 Kannan Rasiah t/a StrataVariance Labs — ABN 21 530 916 531 · <a href="mailto:hello@stratavariancelabs.com">hello@stratavariancelabs.com</a></div>
-    <nav style="display:flex;gap:1rem;">
-      <a href="/docs/WHITEPAPER.md">Whitepaper</a>
-      <a href="/docs/Licensing.md">Licensing</a>
-      <a href="https://github.com/kannanrasiah-daemon/ripple-mark3/releases/tag/v3.3.2" target="_blank" rel="noopener">Keel v3.3.2 Release</a>
-    </nav>
-  </div>
-</footer>
 <!-- SVL footer end -->
